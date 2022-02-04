@@ -1,4 +1,4 @@
-# SQL Analytics
+# SQL Analytics in PostgreSQL
 Here are some PostgreSQL SQL examples for data analytics.
 
 
