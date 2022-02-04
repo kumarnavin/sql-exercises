@@ -1,6 +1,6 @@
-# SQL Analytics in PostgreSQL
-Here are some PostgreSQL SQL examples for data analytics.
-
+# Analytics functions in PostgreSQL
+Here are some PostgreSQL examples for analytical queries.
+[Reference](https://www.postgresql.org/docs/9.1/tutorial-window.html)
 
 Let's say you have gathered the data pipeline performance data as follows.
 
@@ -34,7 +34,7 @@ CREATE OR REPLACE VIEW top_level_stats_vw AS
 ```
 
 ## Add computed column for Build Time (minutes)
-Note that you can find the age from two tiestamps (etl_exec_time_age) and then use this computed column to extract the number of days, hours, minutes and seconds, anc convert it into total build time in minutes.
+Note that you can find the [age](https://www.postgresqltutorial.com/postgresql-age/) from two tiestamps (etl_exec_time_age) and then use this computed column to extract the number of days, hours, minutes and seconds, anc convert it into total build time in minutes.
 
 ```sql
 CREATE OR REPLACE VIEW build_stats_exec_time_vw AS
