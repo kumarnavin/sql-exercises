@@ -1,0 +1,48 @@
+
+Database keys:
+Primary key: uniquely identify the row
+Foreign key: referencing PK in other tables
+Super key: one or more columns to identify a row
+Composite key: set of columns to identify a row
+
+
+Data Modeling:
+1. Add aggregate tables for specific reporting use cases which does not need to go to lowest level Fact tables.
+2. Denormalize the commonly used columns/IDs from dimensions into fact table to simplify SQL joins and faster performance.
+3. Schema documenation helps a lot.
+
+Mistakes with database modeling
+Poor design/planning
+Ignoring normalization
+Not checking data during ETL to protect data integrity
+Poor naming standards
+Lack of testing
+Lack of documentation
+Too wide a table to hold all domain values
+Using identity/guid columns as your only key
+Not using stored procedures to access data
+Trying to build generic objects
+Avoid breaking schema or data changes. Allow multiple versions to avoid breaking downstream consumers. As and when a consumer is ready, it can switch to the new database version.
+
+  
+Physical Database Design:
+1. Add indexes to the table for performance based on table scans (unique composite keys). It's a best practice to add Primary Key for default scan.
+2. Add partitions and subpartitions based on how data will be read such as (country, year, Hospical ID)
+3. You can use computed column with trigger and function for ETL dependencies
+4. Normalize the data for data integrity
+5. Denormalize reporting columns for reporting performance for easier joins to cascading tables
+6. Load data into tables with an Order By based on PK or most common table scan (it will reduce block scans for queries).
+7. Consider columnar databases for BI reporting.
+8. Use the smallest length for columns as possible for reducing DB size.
+
+Writing SQL: 
+1. Filter data before joining. 
+2. Possibly avoid transformations in SQL joins. Use computed columns or created function-based indexes.
+3. Leverage Window/Analytics Functions: RANK, PERCENT_RANK, DENSE_RANK, ROW_NUMBER, LISTAGG, NTH_VALUE, LEAD, LAG, FIRST_VALUE, LAST_VALUE, FIRST, LAST, MEDIAN, VARIANCE, PERCENTILE_DISC, PERCENTILE_CONT, BIT_AND_AGG
+Analytical functions: 
+4. Simplify SQL using WITH clause for temp tables, ROWNUM, 
+5. Pre-aggregate data needed for queries (AGG_ tables)
+
+Application UI performance:
+1. Look at underlying SQL performance
+2. Look at UI performance (REST API, pagination, search on UI and fetch from DB, lazy fetch)
